@@ -18,10 +18,10 @@ void sort(int startIdx, int endIdx, ArrType& arr)
 	if (startIdx >= endIdx) return;//startIdx가 endIdx보다 작아야만 한다.
 
 	int pivotIdx = startIdx;//arr[pivotIdx]보다 작은값은 왼쪽, 큰값은 오른쪽으로 정렬한다.
-	int i = pivotIdx + 1;
-	int j = endIdx;
+	int i = pivotIdx + 1;//i = 피벗보다 작은값인지 검사하는 역할을 함.
+	int j = endIdx;//j = 피벗보다 큰 값을 뒤로 옮기기 위함
 
-	while (i <= j) 
+	while (i <= j)
 	{
 		if (arr[i] > arr[pivotIdx])//i자리에 있는값이 pivot값보다 더 크면
 		{
@@ -39,7 +39,27 @@ void sort(int startIdx, int endIdx, ArrType& arr)
 
 int main()
 {
-	int arr[] = { 1,7,3,5,2,6 };
+	int arr[] = { 3,2,4,6,1,5 };
+
+	//3,2,4,6,1,5 i가 p보다 작으므로 ++i
+	//p i       j
+	//3,2,4,6,1,5 i가 p보다 크므로 j--과 swap(j의 위치와 swap하고 --j)
+	//p   i     j
+	//3,2,5,6,1,4 i가 p보다 크므로 j--과 swap(j의 위치와 swap하고 --j)
+	//p   i   j
+	//3,2,1,6,5,4 i가 p보다 작으므로 ++i
+	//p   i j
+	//3,2,1,6,5,4 i가 p보다 크므로 j--과 swap(j의 위치와 swap하고 --j)
+	//p     ij
+	//3,2,1,6,5,4 피벗을 이동
+	//p   j i
+	//1,2,3,6,5,4
+	//p   j i
+	//(1,2),3,(6,5,4) 괄호친 부분을 재귀함수를 통해 위과정을 반복
+	// p    j  i
+
+	//(1,2),3,(4,5,6) 정렬 완료
+	// p    j  i
 
 	sort(0, 5, arr);
 
