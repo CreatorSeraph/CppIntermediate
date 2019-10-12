@@ -26,7 +26,7 @@ void sort(int startIdx, int endIdx, ArrType& arr)
 		if (arr[i] > arr[pivotIdx])//i자리에 있는값이 pivot값보다 더 크면
 		{
 			swap(arr[i], arr[j--]);
-			//i를 j위치로 옮기고 j를 --한다.
+			//i와 j의 값을 swap하고 j를 다음자리로 옮긴다.
 		}
 		else
 			++i;//아니면 다음 자리를 검사한다.
