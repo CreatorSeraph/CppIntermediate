@@ -15,14 +15,21 @@ public:
 
 
 	// 스택의 맨 앞에 데이터 추가
-	void push(data_type data)
+	bool push(data_type data)
 	{
+		if (size() == max_size())
+			return false;
+
 		++m_size;
 		top() = data;
+		return true;
 	}
 	//스택에 마지막으로 추가된 데이터를 추출
 	data_type pop()
 	{
+		if (empty())
+			return {};
+
 		data_type& temp = top();
 		--m_size;
 		return temp;
