@@ -28,7 +28,7 @@ public:
 		return temp;
 	}
 	//스택에 마지막으로 추가된 데이터를 열람
-	data_type& top() { return m_container[m_size]; }
+	data_type& top() { return m_container[m_size - 1]; }
 
 	bool empty() { return !m_size; }				// 스택이 비어있는지 확인
 	size_t size() { return m_size; }				// 스택의 현재 크기
