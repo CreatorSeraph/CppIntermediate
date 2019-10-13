@@ -34,8 +34,9 @@
 *.opendb
 *.ipch
 *.tlog
-*.idb
 *.pdb
-*.ilk
 *.suo
+*.idb
 *.log
+*.ilk
+*.lastbuildstate
