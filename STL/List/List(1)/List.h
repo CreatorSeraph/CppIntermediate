@@ -60,25 +60,13 @@ public:
 	// 리스트의 맨 앞에 데이터(노드)를 추가함
 	void push_front(data_type data)
 	{
-		node* temp = _new_node(data);
-		_node_link(temp, head());
-		m_head = temp;
-
-		++m_size;
+		insert(head(), data);
 	}
 	// 리스트의 꼬리 노드 앞에 데이터(노드)를 추가함
 	// = 리스트의 맨 뒤에 노드를 추가함
 	void push_back(data_type data)
 	{
-		node* temp = _new_node(data);
-		node* tailPrev = tail()->prev();
-
-		_node_link(temp, tail());
-		if (tailPrev)
-			_node_link(tailPrev, temp);
-		m_tail = temp;
-
-		++m_size;
+		insert(tail(), data);
 	}
 	// 리스트의 특정 위치에 노드를 추가함
 	node* insert(node* place, data_type data)
@@ -86,14 +74,17 @@ public:
 		if (!place) return nullptr;
 
 		node* temp = _new_node(data);
-		node* prevNode = place->prev();
-
-		_node_link(temp, place);
-		if (prevNode)
-			_node_link(prevNode, temp);
+		if (place->prev())
+		{
+			_node_link(place->prev(), temp);
+			_node_link(temp, place);
+		}
 		else
+		{
+			_node_link(temp, place);
 			m_head = temp;
-		
+		}
+
 		++m_size;
 		return temp;
 	}
@@ -107,6 +98,8 @@ public:
 
 		if (tPrev)
 			tPrev->_set_next(tNext);
+		else
+			m_head = tNext;
 		tNext->_set_prev(tPrev);
 		delete target;
 
@@ -124,7 +117,7 @@ private:
 	size_t m_size;
 
 
-	node* _new_node(data_type data) { return new node(data); }	// 새로운 노드 생성(new)
+	node* _new_node(data_type data = data_type()) { return new node(data); }	// 새로운 노드 생성(new)
 	// 두 노드 연결
 	void _node_link(node* prev, node* next)
 	{
