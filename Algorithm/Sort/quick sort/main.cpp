@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 //참고하면 좋은 링크
 //https://coderkoo.tistory.com/7
 //https://dpdpwl.tistory.com/46
@@ -13,7 +12,7 @@ void swap(T& a, T& b)
 }
 
 template<typename ArrType>
-void sort(int startIdx, int endIdx, ArrType& arr)
+void quick_sort(int startIdx, int endIdx, ArrType& arr)
 {
 	if (startIdx >= endIdx) return;//startIdx가 endIdx보다 작아야만 한다.
 
@@ -33,8 +32,8 @@ void sort(int startIdx, int endIdx, ArrType& arr)
 	}
 	swap(arr[pivotIdx], arr[j]);//피벗을 있어야할 위치로 옮겨주고
 
-	sort(startIdx, j - 1, arr);
-	sort(j + 1, endIdx, arr);
+	quick_sort(startIdx, j - 1, arr);
+	quick_sort(j + 1, endIdx, arr);
 }
 
 int main()
@@ -61,7 +60,7 @@ int main()
 	//(1,2),3,(4,5,6) 정렬 완료
 	// p    j  i
 
-	sort(0, 5, arr);
+	quick_sort(0, 5, arr);
 
 	return 0;
 }
