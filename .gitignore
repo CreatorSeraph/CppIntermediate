@@ -40,3 +40,5 @@
 *.log
 *.ilk
 *.lastbuildstate
+*.ipdb
+*.iobj
